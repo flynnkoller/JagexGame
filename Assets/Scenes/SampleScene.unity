@@ -387,6 +387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 6
+  cam: {fileID: 534669904}
 --- !u!136 &707673328
 CapsuleCollider:
   m_ObjectHideFlags: 0
