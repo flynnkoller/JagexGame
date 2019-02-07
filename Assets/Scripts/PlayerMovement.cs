@@ -40,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
         PlayerPrefs.SetFloat("PlayerX", player.transform.position.x);
         PlayerPrefs.SetFloat("PlayerY", player.transform.position.y);
         PlayerPrefs.SetFloat("PlayerZ", player.transform.position.z);
+
         if (collision.gameObject.tag == "DungeonTrigger1")
         {
             SceneManager.LoadScene("Dungeon1");
@@ -50,5 +51,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    
+    private void OnTriggerEnter(Collider other)
+    {
+       
+
+    }
+
+
 }
