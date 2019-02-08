@@ -6,6 +6,7 @@ TagManager:
   tags:
   - DungeonTrigger1
   - HubReturn
+  - wall
   layers:
   - Default
   - TransparentFX
