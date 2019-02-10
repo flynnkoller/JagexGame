@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2017
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JagexGame", "JagexGame.csproj", "{03E76187-95D8-C28E-D3B6-2F3B34E39CD5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JagexGame", "JagexGame.csproj", "{03E76187-95D8-C28E-D3B6-2F3B34E39CD5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JagexGame.Editor", "JagexGame.Editor.csproj", "{FD63CBE5-725C-0BAF-F827-B949E5C58F1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JagexGame.Editor", "JagexGame.Editor.csproj", "{FD63CBE5-725C-0BAF-F827-B949E5C58F1B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JagexGame.Editor", "JagexGame.Editor.csproj", "{FD63CBE5-725C-0BAF-F827-B949E5C58F1B}"
 EndProject
@@ -17,6 +21,18 @@ Global
 		{03E76187-95D8-C28E-D3B6-2F3B34E39CD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03E76187-95D8-C28E-D3B6-2F3B34E39CD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03E76187-95D8-C28E-D3B6-2F3B34E39CD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03E76187-95D8-C28E-D3B6-2F3B34E39CD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03E76187-95D8-C28E-D3B6-2F3B34E39CD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03E76187-95D8-C28E-D3B6-2F3B34E39CD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03E76187-95D8-C28E-D3B6-2F3B34E39CD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD63CBE5-725C-0BAF-F827-B949E5C58F1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD63CBE5-725C-0BAF-F827-B949E5C58F1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD63CBE5-725C-0BAF-F827-B949E5C58F1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD63CBE5-725C-0BAF-F827-B949E5C58F1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD63CBE5-725C-0BAF-F827-B949E5C58F1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD63CBE5-725C-0BAF-F827-B949E5C58F1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD63CBE5-725C-0BAF-F827-B949E5C58F1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD63CBE5-725C-0BAF-F827-B949E5C58F1B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FD63CBE5-725C-0BAF-F827-B949E5C58F1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FD63CBE5-725C-0BAF-F827-B949E5C58F1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD63CBE5-725C-0BAF-F827-B949E5C58F1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -24,8 +40,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {AE386CB1-BC46-4A50-AB7F-07459542AA8D}
 	EndGlobalSection
 EndGlobal
