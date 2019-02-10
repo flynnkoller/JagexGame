@@ -4,31 +4,31 @@ using UnityEngine;
 
 public class LightFinder : MonoBehaviour {
 
-    //Might have to store all of the lights in the scene at the start so that we can always find the closest one
-    //This list should be made avaliable in a seperate class so that all characters in the scene can use it instead of running once per character
-    [SerializeField]
-    List<Light> lights = new List<Light>();
     [SerializeField]
     List<Light> lightsIn = new List<Light>();
     [SerializeField]
-    Light currentLight;
+    Light _currentLight;
 
-	// Use this for initialization
-	void Start ()
+    SceneLights sceneLights;
+
+    private void Start()
     {
-        //Find all lights in the scene, only run once as is an expensive function
-        foreach(Light l in FindObjectsOfType(typeof(Light)))
-        {
-            lights.Add(l);
-        }
+        //Might be a more effiecent way to do this so look back here later
+        sceneLights = GameObject.Find("LightManager").GetComponent<SceneLights>();
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update ()
     {
         //Do this in a manager somewhere
         FindClosest();
 	}
+
+    public Light CurrentLight
+    {
+        get { return _currentLight; }
+        set { _currentLight = value; }
+    }
 
     void FindClosest()
     {
@@ -47,15 +47,12 @@ public class LightFinder : MonoBehaviour {
 
         lightsIn.Clear();
 
-        for (int i = 0; i < lights.Count; i++)
+        for (int i = 0; i < sceneLights.Lights.Count; i++)
         {
             //If the distance is less than the players range find the most intense light if there are more sources
-            if(Distance(transform, lights[i].transform) <= lights[i].range)
+            if(Distance(transform, sceneLights.Lights[i].transform) <= sceneLights.Lights[i].range)
             {
-                lightsIn.Add(lights[i]);
-
-                Debug.Log(Distance(transform, lights[i].transform));
-                Debug.Log(lights[i]);
+                lightsIn.Add(sceneLights.Lights[i]);
             }
         }
 
@@ -64,21 +61,21 @@ public class LightFinder : MonoBehaviour {
             for (int i = 1; i < lightsIn.Count; i++)
             {
                 //Default with the first light
-                currentLight = lightsIn[0];
+                _currentLight = lightsIn[0];
 
                 //Pick the most intense light
                 if (lightsIn[i].intensity > lightsIn[i - 1].intensity)
                 {
-                    currentLight = lightsIn[i];
+                    _currentLight = lightsIn[i];
                 }
             }
         } else if (lightsIn.Count == 1)
         {
-            currentLight = lightsIn[0];
+            _currentLight = lightsIn[0];
         }
         else
         {
-            currentLight = null;
+            _currentLight = null;
         }
 
     }

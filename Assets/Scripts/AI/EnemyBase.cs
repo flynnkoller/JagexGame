@@ -8,6 +8,8 @@ public class EnemyBase : MonoBehaviour {
     [SerializeField]
     protected int _health;
     [SerializeField]
+    protected int _maxHealth;
+    [SerializeField]
     protected int _damage;
     [SerializeField]
     protected int _range;
@@ -16,24 +18,32 @@ public class EnemyBase : MonoBehaviour {
     [SerializeField]
     protected float _critMod;
     [SerializeField]
-    protected bool _canBeDamaged;
-    [SerializeField]
     protected GameObject _player;
+
+    Health health;
 
     //Unless decided otherwise all AI should know what the player is
     protected void Start()
     {
-        _canBeDamaged = true;
         _player = GameObject.FindGameObjectWithTag("Player");
+
+        //Will set a health of 100 100 and come with functions to be healed and damaged
+        //Unless otherwise stated -- allow certain enemies to be spawned with these inputs complete
+        health = new Health();
+        _health = health.CurrentHealth;
+        _maxHealth = health.MaxHealth;
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            TakeDamage();
+        }
     }
 
     void TakeDamage()
     {
-        if(_canBeDamaged == true)
-        {
-            //take the player damage away from health
-            //check if dead here
-        }
+        _health -= 10;
     }
 
     void Attack()
