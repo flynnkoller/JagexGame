@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     public Animation anim;
     public Animator playanim;
 
+    public Interactable focus;
+
     // Use this for initialization
     void Start()
     {
@@ -27,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Move();
         Roll();
+        ItemHit();
     }
 
     private void Move()
@@ -78,6 +81,50 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void ItemHit()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            //if it hits
+            if (Physics.Raycast(ray, out hit, 100))
+            {
+                RemoveFocus();
+            }
+
+        }
+
+
+
+        if (Input.GetMouseButtonDown(1)) //right mouse
+        {
+            //create a ray
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            //if it hits
+            if (Physics.Raycast(ray, out hit, 100))
+            {
+                Interactable interactable = hit.collider.GetComponent<Interactable>();
+                if (interactable != null)
+                {
+                    SetFocus(interactable);
+                }
+            }
+        }
+    }
+
+    void SetFocus(Interactable newFocus)
+    {
+        focus = newFocus;
+    }
+
+    void RemoveFocus()
+    {
+        focus = null;
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
