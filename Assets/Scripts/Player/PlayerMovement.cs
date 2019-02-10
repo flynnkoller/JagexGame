@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
 
-    public float moveSpeed = 3f;
+    private float _moveSpeed = 3f;
     public Camera cam;
     public GameObject player;
 
@@ -46,10 +46,10 @@ public class PlayerMovement : MonoBehaviour
 
 
         //Move Forward and back along z axis                           
-        transform.Translate(Vector3.forward * Time.deltaTime * Input.GetAxis("Vertical") * moveSpeed);
+        transform.Translate(Vector3.forward * Time.deltaTime * Input.GetAxis("Vertical") * _moveSpeed);
 
         //Move Left and right along x Axis                               
-        transform.Translate(Vector3.right * Time.deltaTime * Input.GetAxis("Horizontal") * moveSpeed);
+        transform.Translate(Vector3.right * Time.deltaTime * Input.GetAxis("Horizontal") * _moveSpeed);
 
         //Rotate the player so that forward is the way the camera is facing
         transform.eulerAngles = new Vector3(0, cam.transform.eulerAngles.y, 0);
@@ -65,15 +65,16 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine("RollAnim");
     }
 
+    //Double move speed - play the roll animation and start a time to wait - return back to default speed
     IEnumerator RollAnim()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            moveSpeed = 12f;
+            _moveSpeed = 12f;
             isRolling = true;
             playanim.Play("RollForwards");
             yield return new WaitForSecondsRealtime(0.5f);
-            moveSpeed = 6f;
+            _moveSpeed = 6f;
         }
     }
 

@@ -5,71 +5,101 @@ using UnityEngine;
 
 public class ThirdPersonCamera : MonoBehaviour {
 
-    private const float YangleMin = 0.0f;
-    private const float YangleMax = 50.0f;
+    private const float _YangleMin = 0.0f;
+    private const float _YangleMax = 50.0f;
     float offset = -3;
 
     public Transform lookAt;
     public Transform cameraTransform;
-    Transform pivot;
+    private Transform _pivot;
 
-    private Camera camera;
+    private Camera _camera;
 
-    private float distance = 5.0f;
-    private float currentX = 0.0f;
-    private float currentY = 0.0f;
-    private float sensitivityX = 4.0f;
-    private float sensitivityY = 1.0f;
+    private float _distance = 5.0f;
+    private float _currentX = 0.0f;
+    private float _currentY = 0.0f;
+    private float _sensitivityX = 4.0f;
+    private float _sensitivityY = 1.0f;
+
+    [SerializeField]
+    private bool _moveEnable = true;
 
     LayerMask mask;
 
     private void OnEnable()
     {
         mask = 1 << LayerMask.NameToLayer("Clippable") | 0 << LayerMask.NameToLayer("NotClippable");
-        pivot = transform;
+        _pivot = transform;
     }
 
     private void Start()
     {
         cameraTransform = transform;
-        camera = Camera.main;
+        _camera = Camera.main;
     }
 
     private void Update()
     {
+        if(_moveEnable == true)
+        {
+            CameraPosition();
+        }
 
-        currentX += Input.GetAxis("Mouse X");
-        currentY += -Input.GetAxis("Mouse Y");
-        currentY = Mathf.Clamp(currentY, YangleMin, YangleMax);
-
-        //central ray
-        float unobstructed = offset;
-        Vector3 idealPostion = pivot.TransformPoint(Vector3.forward * offset);
+        Debug.Log(Distance(cameraTransform, lookAt));
     }
 
     private void LateUpdate()
     {
-        Vector3 dir = new Vector3(0, 0, -distance);
-        Quaternion rotation = Quaternion.Euler(currentY, currentX, 0);
+        if(_moveEnable == true)
+        {
+            CameraRotation();
+        }
+
+    }
+
+    void CameraPosition()
+    {
+        //The position around a pivot
+        _currentX += Input.GetAxis("Mouse X");
+        _currentY += -Input.GetAxis("Mouse Y");
+        _currentY = Mathf.Clamp(_currentY, _YangleMin, _YangleMax);
+
+        //central ray
+        float unobstructed = offset;  // <- why???
+        Vector3 idealPostion = _pivot.TransformPoint(Vector3.forward * offset);
+    }
+
+    void CameraRotation()
+    {
+        //The rotation based on position and player pos
+        Vector3 dir = new Vector3(0, 0, -_distance);
+        Quaternion rotation = Quaternion.Euler(_currentY, _currentX, 0);
         cameraTransform.position = lookAt.position + rotation * dir;
         cameraTransform.LookAt(lookAt.position);
     }
 
+    //Can't escape the wall - need a check to release ie. distance check
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.tag.Equals("wall"))
+        //Works on the back and front but not the side walls???
+        if (collision.gameObject.tag.Equals("wall") && Distance(cameraTransform, lookAt) < 5.5f)
         {
-            this.enabled = false;
+            _moveEnable = false;
         }
-        else
+        else if(Distance(cameraTransform, lookAt) >= 5.5f)
         {
-            this.enabled = true;
+            _moveEnable = true;
         }
     }
-    private void OnCollisionExit(Collision collision)
+
+    //Should probably move this to a public function access somewhere as it'll be used more
+    float Distance(Transform start, Transform end)
     {
-        this.enabled = true;
+        var x = Mathf.Pow((start.position.x - end.position.x), 2);
+        var y = Mathf.Pow((start.position.y - end.position.y), 2);
+        var z = Mathf.Pow((start.position.z - end.position.z), 2);
+
+        var c = Mathf.Sqrt(x + y + z);
+        return c;
     }
-
-
 }

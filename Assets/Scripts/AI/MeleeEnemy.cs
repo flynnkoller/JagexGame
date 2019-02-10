@@ -12,7 +12,6 @@ public class MeleeEnemy : EnemyBase{
 
         //Should do these on the specific enemy level
         //TEST
-        _health = 10;
         _damage = 2;
         _speedMod = 1;
         _critMod = 1;
