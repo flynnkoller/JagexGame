@@ -43,6 +43,9 @@ public class ThirdPersonCamera : MonoBehaviour {
         if(_moveEnable == true)
         {
             CameraPosition();
+        } else if(Distance(cameraTransform, lookAt) >= 6)
+        {
+            _moveEnable = true;
         }
 
         Debug.Log(Distance(cameraTransform, lookAt));
@@ -53,6 +56,10 @@ public class ThirdPersonCamera : MonoBehaviour {
         if(_moveEnable == true)
         {
             CameraRotation();
+        }
+         else if(Distance(cameraTransform, lookAt) >= 6)
+        {
+            _moveEnable = true;
         }
 
     }
