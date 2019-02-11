@@ -8,11 +8,6 @@ public class Inventory : MonoBehaviour {
     public GameObject inventory;
     public bool invOpen;
     public static Inventory instance;
-    
-    // Callback which is triggered when
-    // an item gets added/removed.
-    public delegate void OnItemChanged();
-    public OnItemChanged onItemChangedCallback;
 
     public int space = 6;
 
