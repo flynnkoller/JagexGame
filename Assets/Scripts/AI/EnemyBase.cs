@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class EnemyBase : MonoBehaviour {
 
-    //Functions and variables all enemies will follow
-    [SerializeField]
-    protected int _health;
-    [SerializeField]
-    protected int _maxHealth;
     [SerializeField]
     protected int _damage;
     [SerializeField]
@@ -20,30 +15,33 @@ public class EnemyBase : MonoBehaviour {
     [SerializeField]
     protected GameObject _player;
 
-    Health health;
+    protected PlayerCombat _playerCombat;
+
+    protected Health health;
 
     //Unless decided otherwise all AI should know what the player is
     protected void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
-
+        _playerCombat = _player.GetComponent<PlayerCombat>();
         //Will set a health of 100 100 and come with functions to be healed and damaged
         //Unless otherwise stated -- allow certain enemies to be spawned with these inputs complete
-        health = new Health();
-        _health = health.CurrentHealth;
-        _maxHealth = health.MaxHealth;
+        health = new Health(100, 100);
     }
-    private void Update()
+    protected void Update()
     {
+        //TEST when q is pressed damage the enemy and check if it's alive
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            TakeDamage();
+            health.Damage();
+            health.DeathCheck(health.CurrentHealth);
+            if(health.IsDead == true)
+            {
+                Destroy(gameObject);
+            }
         }
-    }
 
-    void TakeDamage()
-    {
-        _health -= 10;
+        Debug.Log(health.CurrentHealth);
     }
 
     void Attack()
