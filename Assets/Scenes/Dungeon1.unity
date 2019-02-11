@@ -1636,9 +1636,12 @@ Transform:
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90.00001}
 <<<<<<< HEAD
+<<<<<<< HEAD
 --- !u!1001 &406733690
 Prefab:
 =======
+=======
+>>>>>>> d625427355f4837bb9d1913fa80d2284ed252cf2
 --- !u!1 &399008827
 GameObject:
   m_ObjectHideFlags: 0
