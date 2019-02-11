@@ -8,6 +8,7 @@ public class Health : MonoBehaviour {
     private int _currentHealth;
     private float _damageMod;
     private float _healMod;
+    private bool _isDead;
 
     //This wants to be called in a player manager so that the max and current health can be saved aswell as keep variables private
     public Health(int MaxHealth, int CurrentHealth)
@@ -36,8 +37,11 @@ public class Health : MonoBehaviour {
         get { return _maxHealth; }
     }
 
-    //Maybe do this step on the ai base and player spereately to allow for more freedom
-
+    public bool IsDead
+    {
+        get { return _isDead; }
+        set { _isDead = value; }
+    }
 
     //Change values to be more modular
     public void Heal()
@@ -60,5 +64,18 @@ public class Health : MonoBehaviour {
     public void Damage()
     {
         CurrentHealth -= 10;
+    }
+
+    public void Damage(Health target, int damage)
+    {
+        target.CurrentHealth -= damage;
+    }
+
+    public void DeathCheck(int health)
+    {
+        if(health <= 0)
+        {
+            IsDead = true;
+        }
     }
 }
