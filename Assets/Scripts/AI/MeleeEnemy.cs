@@ -18,15 +18,6 @@ public class MeleeEnemy : EnemyBase{
         _range = 1;
 	}
 
-    void Update()
-    {
-        base.Update();
-
-        Move();
-        Attack();
-        Look();
-    }
-
     void Move()
     {
         //Movement logic for meele ai 
@@ -36,19 +27,5 @@ public class MeleeEnemy : EnemyBase{
     void Attack()
     {
         //Logic to attack
-    }
-
-    void Look()
-    {
-        transform.LookAt(_player.transform);
-    }
-
-    //TEST if the player collides with the AI deal hella damage
-    private void OnCollisionStay(Collision collision)
-    {
-        if(collision.gameObject.tag == "Player")
-        {
-            health.Damage(_playerCombat.PlayerHealth, _damage);
-        }
     }
 }

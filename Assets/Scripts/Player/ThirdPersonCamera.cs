@@ -43,10 +43,12 @@ public class ThirdPersonCamera : MonoBehaviour {
         if(_moveEnable == true)
         {
             CameraPosition();
-        } else if(Distance(cameraTransform, lookAt) >= 3)
+        } else if(Distance(cameraTransform, lookAt) >= 6)
         {
             _moveEnable = true;
         }
+
+        Debug.Log(Distance(cameraTransform, lookAt));
     }
 
     private void LateUpdate()
@@ -55,7 +57,7 @@ public class ThirdPersonCamera : MonoBehaviour {
         {
             CameraRotation();
         }
-         else if(Distance(cameraTransform, lookAt) >= 3)
+         else if(Distance(cameraTransform, lookAt) >= 6)
         {
             _moveEnable = true;
         }
@@ -87,11 +89,11 @@ public class ThirdPersonCamera : MonoBehaviour {
     private void OnCollisionStay(Collision collision)
     {
         //Works on the back and front but not the side walls???
-        if (collision.gameObject.tag.Equals("wall") && Distance(cameraTransform, lookAt) < 3)
+        if (collision.gameObject.tag.Equals("wall") && Distance(cameraTransform, lookAt) < 5.5f)
         {
             _moveEnable = false;
         }
-        else if(Distance(cameraTransform, lookAt) >= 3)
+        else if(Distance(cameraTransform, lookAt) >= 5.5f)
         {
             _moveEnable = true;
         }

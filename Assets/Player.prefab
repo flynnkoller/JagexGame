@@ -39,7 +39,6 @@ GameObject:
   - component: {fileID: 114490289085583972}
   - component: {fileID: 114146771679496024}
   - component: {fileID: 114413999116153044}
-  - component: {fileID: 114636396363884094}
   - component: {fileID: 54734098070617152}
   - component: {fileID: 65876320945454632}
   - component: {fileID: 95725236598030880}
@@ -1825,18 +1824,6 @@ MonoBehaviour:
   isRolling: 0
   anim: {fileID: 0}
   playanim: {fileID: 0}
-  focus: {fileID: 0}
---- !u!114 &114636396363884094
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1042342245971436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b22b53b4511367a4bb5670a0af9fd52f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!137 &137496247396567522
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
