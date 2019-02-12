@@ -43,7 +43,7 @@ public class ThirdPersonCamera : MonoBehaviour {
         if(_moveEnable == true)
         {
             CameraPosition();
-        } else if(Distance(cameraTransform, lookAt) >= 6)
+        } else if(Distance(cameraTransform, lookAt) >= 3)
         {
             _moveEnable = true;
         }
