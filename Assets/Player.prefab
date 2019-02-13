@@ -37,11 +37,13 @@ GameObject:
   - component: {fileID: 33509626886442236}
   - component: {fileID: 23929463703544136}
   - component: {fileID: 114490289085583972}
+  - component: {fileID: 114732595601158008}
   - component: {fileID: 114146771679496024}
   - component: {fileID: 114413999116153044}
   - component: {fileID: 54734098070617152}
   - component: {fileID: 65876320945454632}
   - component: {fileID: 95725236598030880}
+  - component: {fileID: 114089306703854562}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1782,6 +1784,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114089306703854562
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1042342245971436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d833aac20bdaced469560d91ef575309, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 0}
+  invOpen: 0
+  space: 6
 --- !u!114 &114146771679496024
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1824,6 +1840,18 @@ MonoBehaviour:
   isRolling: 0
   anim: {fileID: 0}
   playanim: {fileID: 0}
+  focus: {fileID: 0}
+--- !u!114 &114732595601158008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1042342245971436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72b643e49e684e24fb2d8a6af9ffff4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!137 &137496247396567522
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

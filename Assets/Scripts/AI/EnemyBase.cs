@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyBase : MonoBehaviour {
 
-    //Functions and variables all enemies will follow
+    //Functions and variables all enemies will follow - but not type specific ones <- they are done a layer down
     [SerializeField]
     protected int _health;
     [SerializeField]
@@ -18,36 +18,63 @@ public class EnemyBase : MonoBehaviour {
     [SerializeField]
     protected float _critMod;
     [SerializeField]
+    protected bool _canAttack = true;
+    [SerializeField]
+    protected float _cooldown;
     protected GameObject _player;
+    protected PlayerCombat _playerHealth;
 
-    Health health;
+    protected Health health;
 
     //Unless decided otherwise all AI should know what the player is
     protected void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
+        _playerHealth = _player.GetComponent<PlayerCombat>();
 
         //Will set a health of 100 100 and come with functions to be healed and damaged
         //Unless otherwise stated -- allow certain enemies to be spawned with these inputs complete
-        health = new Health();
+        //Have it so damage functions can be stored in the health class, so we can simply pass in the private max + current health here
+        health = new Health(_maxHealth, _health);
         _health = health.CurrentHealth;
         _maxHealth = health.MaxHealth;
     }
-    private void Update()
+
+    protected void TakeDamage()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        //Take damage
+        health.Damage();
+        //Check if the ai is still alive
+        health.DeathCheck();
+
+        if(health.IsDead == true)
         {
-            TakeDamage();
+            Destroy(gameObject);
         }
     }
 
-    void TakeDamage()
+    protected void Attack(int damage)
     {
-        _health -= 10;
+        //if the enemy can attack then do
+        if(_canAttack == true)
+        {
+            //Using the targeted damage overload target the players health and damage it
+            health.Damage(_playerHealth.PlayerHealth, damage);
+
+            //Start the cool down
+            _canAttack = false;
+            StartCoroutine(AttackCD(_cooldown));
+        }
     }
 
-    void Attack()
+    IEnumerator AttackCD(float cooldown)
     {
-        //if the enemy is in range of the player run the attack anim aswell as other enemy specific variables as set down the chain
+        yield return new WaitForSeconds(cooldown);
+        _canAttack = true;
+    }
+
+    protected void Look()
+    {
+        transform.LookAt(_player.transform);
     }
 }

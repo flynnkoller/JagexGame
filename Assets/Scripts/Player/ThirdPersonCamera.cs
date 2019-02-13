@@ -24,11 +24,11 @@ public class ThirdPersonCamera : MonoBehaviour {
     [SerializeField]
     private bool _moveEnable = true;
 
-    LayerMask mask;
+    LayerMask _mask;
 
     private void OnEnable()
     {
-        mask = 1 << LayerMask.NameToLayer("Clippable") | 0 << LayerMask.NameToLayer("NotClippable");
+        _mask = 1 << LayerMask.NameToLayer("Clippable") | 0 << LayerMask.NameToLayer("NotClippable");
         _pivot = transform;
     }
 
@@ -43,12 +43,11 @@ public class ThirdPersonCamera : MonoBehaviour {
         if(_moveEnable == true)
         {
             CameraPosition();
-        } else if(Distance(cameraTransform, lookAt) >= 3)
+        }
+        else if(Distance(cameraTransform, lookAt) >= 3)
         {
             _moveEnable = true;
         }
-
-        Debug.Log(Distance(cameraTransform, lookAt));
     }
 
     private void LateUpdate()
@@ -57,9 +56,14 @@ public class ThirdPersonCamera : MonoBehaviour {
         {
             CameraRotation();
         }
-         else if(Distance(cameraTransform, lookAt) >= 6)
+         else if(Distance(cameraTransform, lookAt) >= 3)
         {
             _moveEnable = true;
+        }
+        else
+        {
+            //Kinda jank but works a lil nicer for now
+            cameraTransform.LookAt(lookAt.position);
         }
 
     }
@@ -89,11 +93,11 @@ public class ThirdPersonCamera : MonoBehaviour {
     private void OnCollisionStay(Collision collision)
     {
         //Works on the back and front but not the side walls???
-        if (collision.gameObject.tag.Equals("wall") && Distance(cameraTransform, lookAt) < 5.5f)
+        if (collision.gameObject.tag.Equals("wall") && Distance(cameraTransform, lookAt) < 3)
         {
             _moveEnable = false;
         }
-        else if(Distance(cameraTransform, lookAt) >= 5.5f)
+        else if(Distance(cameraTransform, lookAt) >= 3)
         {
             _moveEnable = true;
         }
