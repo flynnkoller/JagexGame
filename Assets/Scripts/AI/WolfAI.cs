@@ -14,7 +14,7 @@ public class WolfAI : MeleeEnemy {
         //Set the stats for a wolf
         _maxHealth = 150;
         _health = _maxHealth;
-        _damage = 20;
+        _damage = (20 - (_lightMod * 2));
         _speedMod = 1.5f;
         _critMod = 1;
         _range = 1;
@@ -24,6 +24,8 @@ public class WolfAI : MeleeEnemy {
 	// Update is called once per frame
 	void Update ()
     {
+        LightMod();
+
         if (Input.GetKeyDown(KeyCode.Q))
         {
             TakeDamage();
@@ -42,7 +44,7 @@ public class WolfAI : MeleeEnemy {
     //Probably don't want so many collision checks at this level
     private void OnCollisionStay(Collision collision)
     {
-        Attack(_damage);
+        Attack(_damage- (_lightMod *2));
         Debug.Log(_playerHealth.PlayerHealth.CurrentHealth);
     }
 

@@ -21,6 +21,10 @@ public class EnemyBase : MonoBehaviour {
     protected bool _canAttack = true;
     [SerializeField]
     protected float _cooldown;
+    [SerializeField]
+    protected int _lightMod;
+
+    protected LightFinder _lightFinder;
     protected GameObject _player;
     protected PlayerCombat _playerHealth;
 
@@ -31,6 +35,9 @@ public class EnemyBase : MonoBehaviour {
     {
         _player = GameObject.FindGameObjectWithTag("Player");
         _playerHealth = _player.GetComponent<PlayerCombat>();
+
+        //Get the light finder script
+        _lightFinder = gameObject.GetComponent<LightFinder>();
 
         //Will set a health of 100 100 and come with functions to be healed and damaged
         //Unless otherwise stated -- allow certain enemies to be spawned with these inputs complete
@@ -64,6 +71,19 @@ public class EnemyBase : MonoBehaviour {
             //Start the cool down
             _canAttack = false;
             StartCoroutine(AttackCD(_cooldown));
+        }
+    }
+
+    protected void LightMod()
+    {
+        //If there is a light set the light mod to the intensity
+        if(_lightFinder.CurrentLight != null)
+        {
+            _lightMod = Mathf.FloorToInt(_lightFinder.CurrentLight.intensity);
+        }
+        else
+        {
+            _lightMod = 0;
         }
     }
 
