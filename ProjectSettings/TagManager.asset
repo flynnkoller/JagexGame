@@ -8,6 +8,7 @@ TagManager:
   - HubReturn
   - wall
   - inventory
+  - Pond
   layers:
   - Default
   - TransparentFX
