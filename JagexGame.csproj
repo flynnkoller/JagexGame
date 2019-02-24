@@ -333,7 +333,6 @@
     <Compile Include="Assets\Scripts\AI\WolfAI.cs" />
     <Compile Include="Assets\Scripts\Interactable.cs" />
     <Compile Include="Assets\Scripts\Inventory.cs" />
-    <Compile Include="Assets\Scripts\Items\Arrow.cs" />
     <Compile Include="Assets\Scripts\Items\WeaponSO.cs" />
     <Compile Include="Assets\Scripts\Light\LightFinder.cs" />
     <Compile Include="Assets\Scripts\Light\LightUI.cs" />
@@ -343,7 +342,6 @@
     <Compile Include="Assets\Scripts\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\Player\Fishing.cs" />
     <Compile Include="Assets\Scripts\Player\Health.cs" />
-    <Compile Include="Assets\Scripts\Player\NewCamera.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerCombat.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Player\PositionSetting.cs" />
