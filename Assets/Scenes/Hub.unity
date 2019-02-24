@@ -1335,6 +1335,12 @@ MonoBehaviour:
   cameraTransform: {fileID: 0}
   _distance: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+  cameraTransform: {fileID: 534669905}
+>>>>>>> 71efafe1adab34a9cda6d2d8e84ee79d87d098fb
+>>>>>>> 2f02996f268a6ee4f431f5142f16bddbdf03c5aa
 =======
 =======
   cameraTransform: {fileID: 534669905}
@@ -1473,8 +1479,11 @@ RectTransform:
     type: 2}
   m_PrefabInternal: {fileID: 1512456895}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
+>>>>>>> 2f02996f268a6ee4f431f5142f16bddbdf03c5aa
+=======
 >>>>>>> 2f02996f268a6ee4f431f5142f16bddbdf03c5aa
 --- !u!1 &692625554
 GameObject:
@@ -1545,7 +1554,10 @@ CanvasRenderer:
   m_GameObject: {fileID: 692625554}
   m_CullTransparentMesh: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 2f02996f268a6ee4f431f5142f16bddbdf03c5aa
 =======
 --- !u!1001 &761473543
 Prefab:
@@ -1590,6 +1602,9 @@ Prefab:
   m_SourcePrefab: {fileID: 100100000, guid: e8db7b324d9881d4a9d4666c14af14d2, type: 2}
   m_IsPrefabAsset: 0
 >>>>>>> 71efafe1adab34a9cda6d2d8e84ee79d87d098fb
+<<<<<<< HEAD
+>>>>>>> 2f02996f268a6ee4f431f5142f16bddbdf03c5aa
+=======
 >>>>>>> 2f02996f268a6ee4f431f5142f16bddbdf03c5aa
 --- !u!224 &824955507 stripped
 RectTransform:
@@ -4021,8 +4036,11 @@ Prefab:
       value: 
       objectReference: {fileID: 367382757}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
+>>>>>>> 2f02996f268a6ee4f431f5142f16bddbdf03c5aa
+=======
 >>>>>>> 2f02996f268a6ee4f431f5142f16bddbdf03c5aa
     - target: {fileID: 114490289085583972, guid: d61599354f2fee84c89fe3b3339cf32f,
         type: 2}
@@ -4030,7 +4048,10 @@ Prefab:
       value: 
       objectReference: {fileID: 1102141482}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 2f02996f268a6ee4f431f5142f16bddbdf03c5aa
 =======
     - target: {fileID: 114732595601158008, guid: d61599354f2fee84c89fe3b3339cf32f,
         type: 2}
@@ -4054,6 +4075,9 @@ Prefab:
       value: 
       objectReference: {fileID: 534669904}
 >>>>>>> 71efafe1adab34a9cda6d2d8e84ee79d87d098fb
+<<<<<<< HEAD
+>>>>>>> 2f02996f268a6ee4f431f5142f16bddbdf03c5aa
+=======
 >>>>>>> 2f02996f268a6ee4f431f5142f16bddbdf03c5aa
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d61599354f2fee84c89fe3b3339cf32f, type: 2}
