@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private float _moveSpeed = 3f;
     public Camera cam;
     public GameObject player;
+    public GameObject prompt;
 
     public bool isMoving;
     public bool isRolling;
@@ -22,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         playanim = gameObject.GetComponent<Animator>();
+        prompt.SetActive(false);
     }
 
     // Update is called once per frame
@@ -140,12 +142,37 @@ public class PlayerMovement : MonoBehaviour
         {
             SceneManager.LoadScene("Hub");
         }
+
+
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
-       
+        if (other.tag == "Pond")
+        {
+            prompt.SetActive(true);
+        }
+    }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Pond")
+        {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                prompt.SetActive(false);
+                SceneManager.LoadScene("FishingMinigame");
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Pond")
+        {
+            prompt.SetActive(false);
+        }
     }
 
 

@@ -15,7 +15,7 @@ public class ThirdPersonCamera : MonoBehaviour {
 
     private Camera _camera;
 
-    private float _distance = 2.0f;
+    public float _distance = 2.0f;
     private float _currentX = 0.0f;
     private float _currentY = 0.0f;
     private float _sensitivityX = 4.0f;
@@ -76,7 +76,6 @@ public class ThirdPersonCamera : MonoBehaviour {
         _currentY = Mathf.Clamp(_currentY, _YangleMin, _YangleMax);
 
         //central ray
-        float unobstructed = offset;  // <- why???
         Vector3 idealPostion = _pivot.TransformPoint(Vector3.forward * offset);
     }
 
