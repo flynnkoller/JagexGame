@@ -6,9 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class MenuScript : MonoBehaviour {
 
-	public void StartGame()
+    public Slider mySlider;
+    public int lvlNum;
+
+    public void StartGame()
     {
-        SceneManager.LoadScene("Hub");
+        lvlNum = 6;
+        SceneManager.LoadScene("LoadingScreen");
     }
 
     public void ControlsScreen()
@@ -31,5 +35,24 @@ public class MenuScript : MonoBehaviour {
         SceneManager.LoadScene("MainMenu");
     }
 
+    public void SettingsScreen()
+    {
+        SceneManager.LoadScene("Settings");
+    }
 
+    public void FullScreen()
+    {
+        Screen.fullScreen = Screen.fullScreen;
+    }
+
+    public void Windowed()
+    {
+        Screen.fullScreen = !Screen.fullScreen;
+    }
+
+    public void OnValueChanged()
+    {
+        
+        AudioListener.volume = mySlider.value;
+    }
 }

@@ -484,7 +484,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 3bef1b954bb9e9940b62fc1bb5b9134a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2be7b70e984b51444aca9c12ae4723a7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -716,6 +716,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5920a14af5a3abf479fcdadac1aedb47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySlider: {fileID: 0}
 --- !u!1 &2026732159
 GameObject:
   m_ObjectHideFlags: 0

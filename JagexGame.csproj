@@ -337,6 +337,7 @@
     <Compile Include="Assets\Scripts\Light\LightFinder.cs" />
     <Compile Include="Assets\Scripts\Light\LightUI.cs" />
     <Compile Include="Assets\Scripts\Light\SceneLights.cs" />
+    <Compile Include="Assets\Scripts\LoadingScreen.cs" />
     <Compile Include="Assets\Scripts\MenuScript.cs" />
     <Compile Include="Assets\Scripts\MenuScroll.cs" />
     <Compile Include="Assets\Scripts\PauseMenu.cs" />

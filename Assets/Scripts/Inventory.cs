@@ -35,11 +35,13 @@ public class Inventory : MonoBehaviour {
             if (invOpen == false)
             {
                 inventory.SetActive(true);
+                Cursor.visible = true;
             }
 
             if (invOpen == true)
             {
                 inventory.SetActive(false);
+                Cursor.visible = false;
             }
 
         }

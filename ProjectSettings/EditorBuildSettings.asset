@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 1563103f67b218e49bbf6dbedbb9bd0a
   - enabled: 1
+    path: Assets/Scenes/LoadingScreen.unity
+    guid: b7787a7d6dd957345934de4fab483b0b
+  - enabled: 1
     path: Assets/Scenes/Hub.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
@@ -23,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FishingMinigame.unity
     guid: 85ec6b4cd919abd4c8fb698c64754ae9
+  - enabled: 1
+    path: Assets/Scenes/Settings.unity
+    guid: d07fee17f55aafb4799e3682ffa3c409
   m_configObjects: {}

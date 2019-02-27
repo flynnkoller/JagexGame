@@ -33,6 +33,7 @@ public class PauseMenu : MonoBehaviour
                 menu.gameObject.SetActive(true);
                 quit.gameObject.SetActive(true);
                 Time.timeScale = 0;
+                Cursor.visible = true;
             }
             else
             {
@@ -41,6 +42,7 @@ public class PauseMenu : MonoBehaviour
                 resume.gameObject.SetActive(false);
                 menu.gameObject.SetActive(false);
                 quit.gameObject.SetActive(false);
+                Cursor.visible = false;
             }
         }
 
