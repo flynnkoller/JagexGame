@@ -769,7 +769,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waitText: {fileID: 1909402887}
   mainText: {fileID: 2121028490}
-  levelSelect: 6
+  levelSelect: 0
   slider: {fileID: 943581214}
 --- !u!4 &1180576822
 Transform:

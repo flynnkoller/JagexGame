@@ -6,23 +6,28 @@ using UnityEngine.SceneManagement;
 
 public class MenuScript : MonoBehaviour {
 
-    public Slider mySlider;
+    Slider mySlider;
     public int lvlNum;
+
+    LoadingScreen Load = new LoadingScreen();
 
     public void StartGame()
     {
-        lvlNum = 6;
-        SceneManager.LoadScene("LoadingScreen");
+        Load.levelSelect = 2;
+        Initiate.Fade("Hub", Color.white, 1.0f);
+        StartCoroutine(FadeWait());
     }
 
     public void ControlsScreen()
     {
-        SceneManager.LoadScene("Controls");
+        Initiate.Fade("Controls", Color.black, 5.0f);
+        StartCoroutine(FadeWait());
     }
 
     public void CreditsScreen()
     {
-        SceneManager.LoadScene("Credits");
+        Initiate.Fade("Credits", Color.black, 5.0f);
+        StartCoroutine(FadeWait());
     }
 
     public void QuitGame()
@@ -32,12 +37,14 @@ public class MenuScript : MonoBehaviour {
 
     public void BackToMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        Initiate.Fade("MainMenu", Color.black, 5.0f);
+        StartCoroutine(FadeWait());
     }
 
     public void SettingsScreen()
     {
-        SceneManager.LoadScene("Settings");
+        Initiate.Fade("Settings", Color.black, 5.0f);
+        StartCoroutine(FadeWait());
     }
 
     public void FullScreen()
@@ -54,5 +61,10 @@ public class MenuScript : MonoBehaviour {
     {
         
         AudioListener.volume = mySlider.value;
+    }
+
+    IEnumerator FadeWait()
+    {
+        yield return new WaitForSeconds(3);
     }
 }

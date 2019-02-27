@@ -5,8 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class LoadingScreen : MonoBehaviour {
-
-    MenuScript menu = new MenuScript();
+    
 
     bool isLoaded;
     public Text waitText;
@@ -20,7 +19,6 @@ public class LoadingScreen : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        levelSelect = menu.lvlNum;
         StartCoroutine(Loading(levelSelect));
         isLoaded = false;
         StartCoroutine(TextChange());
