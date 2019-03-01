@@ -9,6 +9,12 @@ TagManager:
   - wall
   - inventory
   - Pond
+  - fishingGuide
+  - Wmerchant
+  - Gmerchant
+  - questGuide
+  - dog
+  - explorerF
   layers:
   - Default
   - TransparentFX
