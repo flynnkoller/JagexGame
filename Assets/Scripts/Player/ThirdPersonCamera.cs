@@ -5,111 +5,142 @@ using UnityEngine;
 
 public class ThirdPersonCamera : MonoBehaviour {
 
+    private float _currentX;
+    private float _currentY;
+
     private const float _YangleMin = 0.0f;
     private const float _YangleMax = 50.0f;
-    float offset = -3;
 
-    public Transform lookAt;
-    public Transform cameraTransform;
-    private Transform _pivot;
+    private Vector3 _dir;
 
-    private Camera _camera;
+    public GameObject player;
+    public GameObject firePoint;
+    private Camera _cam;
 
-    public float _distance = 2.0f;
-    private float _currentX = 0.0f;
-    private float _currentY = 0.0f;
-    private float _sensitivityX = 4.0f;
-    private float _sensitivityY = 1.0f;
-
-    [SerializeField]
-    private bool _moveEnable = true;
-
-    LayerMask _mask;
-
-    private void OnEnable()
+    // Use this for initialization
+    void Start()
     {
-        _mask = 1 << LayerMask.NameToLayer("Clippable") | 0 << LayerMask.NameToLayer("NotClippable");
-        _pivot = transform;
+        _cam = GetComponent<Camera>();
     }
 
-    private void Start()
+    // Update is called once per frame
+    void Update()
     {
-        cameraTransform = transform;
-        _camera = Camera.main;
+        AvoidWall();
+        Mouse();
+        CamPos();
+        CamRotate();
+        CamRay(firePoint.transform.position);
     }
 
-    private void Update()
+    void Mouse()
     {
-        if(_moveEnable == true)
-        {
-            CameraPosition();
-        }
-        else if(Distance(cameraTransform, lookAt) >= 3)
-        {
-            _moveEnable = true;
-        }
+        //Lock the cursor and make it invisible 
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
-    private void LateUpdate()
+    void CamPos()
     {
-        if(_moveEnable == true)
+        //Get the axis of where the mouse is
+        _currentX += Input.GetAxis("Mouse X");
+        _currentY += -Input.GetAxis("Mouse Y");
+
+        //Limit the Y axis rotation
+        _currentY = Mathf.Clamp(_currentY, _YangleMin, _YangleMax);
+
+        //Set the ideal distance between camera and player
+        Vector3 idealPostion = transform.TransformPoint(Vector3.forward * 3);
+
+        //Get the direction of the camera to player
+        Vector3 dir = new Vector3(0, 0, -3);
+
+        //
+        Quaternion rotation = Quaternion.Euler(_currentY, _currentX, 0);
+
+        //set the postition to the rotation pivot and players by the distance
+        transform.position = (player.transform.position) + rotation * dir;
+
+        //Set it so the camera is always above the player
+        //transform.position += new Vector3(0, 1, 0);
+    }
+
+    void CamRotate()
+    {
+        //Looks at the player transform
+        transform.LookAt(player.transform.position + new Vector3(0.5f, 0, 0.5f));
+    }
+
+    void CamRay(Vector3 origin)
+    {
+        Ray ray = _cam.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, 100))
         {
-            CameraRotation();
-        }
-         else if(Distance(cameraTransform, lookAt) >= 3)
-        {
-            _moveEnable = true;
+            //Get the direction between the hit point and player so that an arrow can be spawned at that angle
+            Dir = hit.point - origin;
         }
         else
         {
-            //Kinda jank but works a lil nicer for now
-            cameraTransform.LookAt(lookAt.position);
+            //Compare between the point 10 units down the ray
+            Dir = ray.GetPoint(10) - origin;
         }
-
     }
 
-    void CameraPosition()
+    void AvoidWall()
     {
-        //The position around a pivot
-        _currentX += Input.GetAxis("Mouse X");
-        _currentY += -Input.GetAxis("Mouse Y");
-        _currentY = Mathf.Clamp(_currentY, _YangleMin, _YangleMax);
+        //Using colliders didn't really work
+        //Raycasts can work
 
-        //central ray
-        Vector3 idealPostion = _pivot.TransformPoint(Vector3.forward * offset);
-    }
+        Ray ray1 = new Ray(transform.position, Vector3.forward);
+        Ray ray2 = new Ray(transform.position, Vector3.back);
+        Ray ray3 = new Ray(transform.position, Vector3.left);
+        Ray ray4 = new Ray(transform.position, Vector3.right);
 
-    void CameraRotation()
-    {
-        //The rotation based on position and player pos
-        Vector3 dir = new Vector3(0, 0, -_distance);
-        Quaternion rotation = Quaternion.Euler(_currentY, _currentX, 0);
-        cameraTransform.position = lookAt.position + rotation * dir;
-        cameraTransform.LookAt(lookAt.position);
-    }
+        RaycastHit hit;
 
-    //Can't escape the wall - need a check to release ie. distance check
-    private void OnCollisionStay(Collision collision)
-    {
-        //Works on the back and front but not the side walls???
-        if (collision.gameObject.tag.Equals("wall") && Distance(cameraTransform, lookAt) < 3)
+        if (Physics.Raycast(ray1, out hit, .5f))
         {
-            _moveEnable = false;
+            //Stop from moving this way
+            _currentX += hit.point.x;
+            _currentY += hit.point.y;
         }
-        else if(Distance(cameraTransform, lookAt) >= 3)
+
+        if (Physics.Raycast(ray2, out hit, .5f))
         {
-            _moveEnable = true;
+            //Stop from moving this way
+            _currentX -= hit.point.x;
+            _currentY -= hit.point.y;
+        }
+
+        if (Physics.Raycast(ray3, out hit, .5f))
+        {
+            //Stop from moving this way
+            _currentX += hit.point.x;
+            _currentY += hit.point.y;
+        }
+
+        if (Physics.Raycast(ray4, out hit, .5f))
+        {
+            //Stop from moving this way
+            _currentX -= hit.point.x;
+            _currentY -= hit.point.y;
         }
     }
 
-    //Should probably move this to a public function access somewhere as it'll be used more
-    float Distance(Transform start, Transform end)
-    {
-        var x = Mathf.Pow((start.position.x - end.position.x), 2);
-        var y = Mathf.Pow((start.position.y - end.position.y), 2);
-        var z = Mathf.Pow((start.position.z - end.position.z), 2);
+    #region CONSTRUCTORS
 
-        var c = Mathf.Sqrt(x + y + z);
-        return c;
+    public Vector3 Dir
+    {
+        get
+        {
+            return _dir;
+        }
+        private set
+        {
+            _dir = value;
+        }
     }
+
+    #endregion
 }
