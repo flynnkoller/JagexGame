@@ -333,9 +333,8 @@
     <Compile Include="Assets\RPG Character Animation Pack FREE\SuperCharacterController\SuperCharacterController\Math3d.cs" />
     <Compile Include="Assets\Scripts\AI\EnemyBase.cs" />
     <Compile Include="Assets\Scripts\AI\MeleeEnemy.cs" />
+    <Compile Include="Assets\Scripts\AI\TestEnemyAI.cs" />
     <Compile Include="Assets\Scripts\AI\WolfAI.cs" />
-    <Compile Include="Assets\Scripts\Interactable.cs" />
-    <Compile Include="Assets\Scripts\Inventory.cs" />
     <Compile Include="Assets\Scripts\Items\WeaponSO.cs" />
     <Compile Include="Assets\Scripts\Light\LightFinder.cs" />
     <Compile Include="Assets\Scripts\Light\LightUI.cs" />
@@ -344,9 +343,11 @@
     <Compile Include="Assets\Scripts\Menus\MenuScript.cs" />
     <Compile Include="Assets\Scripts\Menus\MenuScroll.cs" />
     <Compile Include="Assets\Scripts\Menus\PauseMenu.cs" />
-    <Compile Include="Assets\Scripts\NPCinteraction.cs" />
     <Compile Include="Assets\Scripts\Player\Fishing.cs" />
     <Compile Include="Assets\Scripts\Player\Health.cs" />
+    <Compile Include="Assets\Scripts\Player\Interactable.cs" />
+    <Compile Include="Assets\Scripts\Player\Inventory.cs" />
+    <Compile Include="Assets\Scripts\Player\NPCinteraction.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerCombat.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Player\PositionSetting.cs" />
