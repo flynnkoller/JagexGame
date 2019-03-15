@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WolfAI : MeleeEnemy {
 
+    public Text healthText;
     private bool _canMove = true;
 
 	// Use this for initialization
@@ -19,11 +21,14 @@ public class WolfAI : MeleeEnemy {
         _critMod = 1;
         _range = 1;
         _cooldown = 0.75f;
+
+        healthText.text = health.CurrentHealth.ToString();
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
+        healthText.text = health.CurrentHealth.ToString();
         LightMod();
 
         if (Input.GetKeyDown(KeyCode.Q))

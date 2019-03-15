@@ -15,6 +15,7 @@ TagManager:
   - questGuide
   - dog
   - explorerF
+  - enemy
   layers:
   - Default
   - TransparentFX

@@ -6,6 +6,7 @@ public class TestEnemyAI : MeleeEnemy {
 
     private bool _canMove = true;
 
+
 	// Use this for initialization
 	new void Start ()
     {
@@ -26,11 +27,7 @@ public class TestEnemyAI : MeleeEnemy {
     {
         LightMod();
 
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            TakeDamage();
-            Debug.Log(health.CurrentHealth);
-        }
+        
 
         Look();
 
@@ -46,6 +43,15 @@ public class TestEnemyAI : MeleeEnemy {
     {
         Attack(_damage- (_lightMod *2));
         Debug.Log(_playerHealth.PlayerHealth.CurrentHealth);
+
+        if (collision.gameObject.tag == "Player")
+        {
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                TakeDamage();
+                Debug.Log(health.CurrentHealth);
+            }
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -53,6 +59,7 @@ public class TestEnemyAI : MeleeEnemy {
         if (collision.gameObject.tag == "Player")
         {
             _canMove = false;
+            
         }
     }
 
