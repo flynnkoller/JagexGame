@@ -27,7 +27,7 @@ public class ThirdPersonCamera : MonoBehaviour {
     void Update()
     {
         AvoidWall();
-        Mouse();
+        //Mouse();
         CamPos();
         CamRotate();
         CamRay(firePoint.transform.position);
